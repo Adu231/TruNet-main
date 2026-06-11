@@ -1,0 +1,110 @@
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import Index from "./pages/Index";
+import About from "./pages/About";
+import Features from "./pages/Features";
+import Pricing from "./pages/Pricing";
+import Contact from "./pages/Contact";
+import Dashboard from "./pages/Dashboard";
+import DashboardProfessional from "./pages/DashboardProfessional";
+import DashboardBusiness from "./pages/DashboardBusiness";
+import DashboardFreelancer from "./pages/DashboardFreelancer";
+import DashboardRecruiter from "./pages/DashboardRecruiter";
+import DashboardInvestor from "./pages/DashboardInvestor";
+import DashboardExpert from "./pages/DashboardExpert";
+import DashboardAdmin from "./pages/DashboardAdmin";
+import DashboardNetwork from "./pages/DashboardNetwork";
+import DashboardLeads from "./pages/DashboardLeads";
+import DashboardMatches from "./pages/DashboardMatches";
+import DashboardMarketplace from "./pages/DashboardMarketplace";
+import DashboardReputation from "./pages/DashboardReputation";
+import DashboardMessages from "./pages/DashboardMessages";
+import DashboardEvents from "./pages/DashboardEvents";
+import DashboardCommunity from "./pages/DashboardCommunity";
+import DashboardRecruitment from "./pages/DashboardRecruitment";
+
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import ForgotPassword from "./pages/ForgotPassword";
+import Profile from "./pages/Profile";
+import SettingsPage from "./pages/Settings";
+import Blog from "./pages/Blog";
+import FAQPage from "./pages/FAQPage";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
+import NotFound from "./pages/NotFound";
+
+const queryClient = new QueryClient();
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, [pathname]);
+  return null;
+}
+
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <ScrollToTop />
+        <Routes>
+          {/* Public */}
+          <Route path="/" element={<Index />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/features" element={<Features />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<Blog />} />
+          <Route path="/faq" element={<FAQPage />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
+
+          {/* Dashboard Router (redirects based on role) */}
+          <Route path="/dashboard" element={<Dashboard />} />
+
+          {/* Role-specific Dashboards */}
+          <Route path="/dashboard/professional" element={<DashboardProfessional />} />
+          <Route path="/dashboard/business" element={<DashboardBusiness />} />
+          <Route path="/dashboard/freelancer" element={<DashboardFreelancer />} />
+          <Route path="/dashboard/recruiter" element={<DashboardRecruiter />} />
+          <Route path="/dashboard/investor" element={<DashboardInvestor />} />
+          <Route path="/dashboard/expert" element={<DashboardExpert />} />
+          <Route path="/dashboard/admin" element={<DashboardAdmin />} />
+
+          {/* Shared Dashboard Pages */}
+          <Route path="/dashboard/network" element={<DashboardNetwork />} />
+          <Route path="/dashboard/leads" element={<DashboardLeads />} />
+          <Route path="/dashboard/matches" element={<DashboardMatches />} />
+          <Route path="/dashboard/marketplace" element={<DashboardMarketplace />} />
+          <Route path="/dashboard/reputation" element={<DashboardReputation />} />
+          <Route path="/dashboard/messages" element={<DashboardMessages />} />
+          <Route path="/dashboard/events" element={<DashboardEvents />} />
+          <Route path="/dashboard/community" element={<DashboardCommunity />} />
+          <Route path="/dashboard/recruitment" element={<DashboardRecruitment />} />
+          <Route path="/dashboard/notifications" element={<Dashboard />} />
+
+          {/* Account */}
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/settings" element={<SettingsPage />} />
+
+          {/* 404 */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </TooltipProvider>
+  </QueryClientProvider>
+);
+
+export default App;
