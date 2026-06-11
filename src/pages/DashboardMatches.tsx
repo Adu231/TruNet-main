@@ -45,6 +45,11 @@ export default function DashboardMatches() {
   const [search, setSearch] = useState("");
 
   const handleAction = (id: string, actionName: string) => {
+    if (actionName === "rejected" && role !== "admin") {
+      setMatches((prev) => prev.filter((item) => item.id !== id));
+      toast.info("Match dismissed.");
+      return;
+    }
     setMatches((prev) =>
       prev.map((item) => {
         if (item.id === id) {
@@ -53,7 +58,7 @@ export default function DashboardMatches() {
         return item;
       })
     );
-    if (actionName === "connected") {
+    if (actionName === "connected" || actionName === "approved") {
       toast.success("Connection request accepted!");
     } else if (actionName === "pending") {
       toast.success("Request sent successfully!");
@@ -82,12 +87,12 @@ export default function DashboardMatches() {
             </p>
           </div>
           <div className="relative w-full sm:w-64">
-            <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+            <Search size={15} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search matches..."
-              className="input-field pl-9 py-1.5 text-xs"
+              className="input-field pl-11 py-1.5 text-xs"
             />
           </div>
         </div>
@@ -184,6 +189,10 @@ export default function DashboardMatches() {
                 ) : match.status === "pending" ? (
                   <button disabled className="w-full py-2 rounded-lg bg-muted text-muted-foreground text-xs font-semibold text-center cursor-default">
                     Connection Request Sent
+                  </button>
+                ) : match.status === "rejected" ? (
+                  <button disabled className="w-full py-2 rounded-lg bg-muted/40 text-muted-foreground/60 text-xs font-semibold text-center cursor-default">
+                    Dismissed
                   </button>
                 ) : (
                   <button disabled className="w-full py-2 rounded-lg bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 text-xs font-semibold text-center cursor-default flex items-center justify-center gap-1">

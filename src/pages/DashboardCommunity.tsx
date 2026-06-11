@@ -143,12 +143,12 @@ export default function DashboardCommunity() {
 
         {/* Search */}
         <div className="relative mb-6 max-w-md">
-          <Search size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground" />
+          <Search size={14} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search discussion threads..."
-            className="input-field pl-10 py-2 text-sm"
+            className="input-field pl-11 py-2 text-sm"
           />
         </div>
 

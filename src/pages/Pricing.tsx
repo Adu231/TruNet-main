@@ -5,6 +5,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { PRICING_PLANS } from "@/constants";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/hooks/useAuth";
 
 const COMPARISON_FEATURES = [
   { feature: "Verified Profile", starter: true, professional: true, business: true },
@@ -29,6 +30,7 @@ const FAQS = [
 ];
 
 export default function Pricing() {
+  const { isAuthenticated } = useAuth();
   const [annual, setAnnual] = useState(true);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
@@ -103,7 +105,22 @@ export default function Pricing() {
                   ))}
                 </ul>
                 <Link
-                  to="/register"
+                  to={
+                    isAuthenticated
+                      ? plan.monthlyPrice === 0
+                        ? "/dashboard"
+                        : "/payment"
+                      : "/register"
+                  }
+                  state={
+                    isAuthenticated && plan.monthlyPrice > 0
+                      ? {
+                          planName: plan.name,
+                          price: annual ? plan.yearlyPrice : plan.monthlyPrice,
+                          billing: annual ? "annual" : "monthly"
+                        }
+                      : undefined
+                  }
                   className={cn(
                     "block w-full text-center py-3 rounded-xl font-semibold text-sm transition-all",
                     plan.highlighted ? "bg-white text-primary hover:bg-white/90" : "bg-primary text-white hover:opacity-90 shadow-brand-sm"
@@ -190,7 +207,13 @@ export default function Pricing() {
           <h2 className="text-2xl font-display font-bold text-foreground mb-3">Not sure which plan is right?</h2>
           <p className="text-muted-foreground mb-6">Talk to our team and we will help you find the perfect fit for your goals.</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Link to="/register" className="btn-primary justify-center">Start Free Trial <ArrowRight size={15} /></Link>
+            <Link
+              to={isAuthenticated ? "/payment" : "/register"}
+              state={isAuthenticated ? { planName: "Professional Plan", price: 29, billing: "monthly" } : undefined}
+              className="btn-primary justify-center"
+            >
+              Start Free Trial <ArrowRight size={15} />
+            </Link>
             <Link to="/contact" className="btn-secondary justify-center">Talk to Sales</Link>
           </div>
         </div>

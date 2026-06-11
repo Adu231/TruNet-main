@@ -41,73 +41,73 @@ function getSidebarItems(role: string): NavItem[] {
     case "business":
       return [
         { icon: LayoutDashboard, label: "Overview", href: "/dashboard/business" },
-        { icon: Briefcase, label: "My Services", href: "/dashboard/marketplace" },
+        { icon: Briefcase, label: "My Services", href: "/dashboard/business/services" },
         { icon: TrendingUp, label: "Lead Pipeline", href: "/dashboard/leads" },
-        { icon: Handshake, label: "Partnerships", href: "/dashboard/network" },
+        { icon: Handshake, label: "Partnerships", href: "/dashboard/business/partnerships" },
         { icon: Zap, label: "AI Matches", href: "/dashboard/matches", badge: "New" },
-        { icon: BarChart3, label: "Analytics", href: "/dashboard/reputation" },
+        { icon: BarChart3, label: "Analytics", href: "/dashboard/business/analytics" },
         { icon: MessageSquare, label: "Messages", href: "/dashboard/messages", badge: "5" },
-        { icon: Calendar, label: "Business Events", href: "/dashboard/events" },
+        { icon: Calendar, label: "Business Events", href: "/dashboard/business/events" },
       ];
 
     case "freelancer":
       return [
         { icon: LayoutDashboard, label: "Overview", href: "/dashboard/freelancer" },
-        { icon: Briefcase, label: "My Projects", href: "/dashboard/marketplace" },
+        { icon: Briefcase, label: "My Projects", href: "/dashboard/freelancer/projects" },
         { icon: Globe, label: "Browse Work", href: "/dashboard/leads" },
-        { icon: FileText, label: "Proposals", href: "/dashboard/matches" },
+        { icon: FileText, label: "Proposals", href: "/dashboard/freelancer/proposals" },
         { icon: Star, label: "Reviews & Trust", href: "/dashboard/reputation" },
-        { icon: DollarSign, label: "Earnings", href: "/dashboard/network" },
+        { icon: DollarSign, label: "Earnings", href: "/dashboard/freelancer/earnings" },
         { icon: MessageSquare, label: "Client Chat", href: "/dashboard/messages", badge: "2" },
-        { icon: Award, label: "Portfolio", href: "/dashboard/community" },
+        { icon: Award, label: "Portfolio", href: "/dashboard/freelancer/portfolio" },
       ];
 
     case "recruiter":
       return [
         { icon: LayoutDashboard, label: "Overview", href: "/dashboard/recruiter" },
         { icon: ClipboardList, label: "Job Listings", href: "/dashboard/recruitment" },
-        { icon: Users, label: "Candidates", href: "/dashboard/network" },
-        { icon: Calendar, label: "Interviews", href: "/dashboard/events" },
+        { icon: Users, label: "Candidates", href: "/dashboard/recruiter/candidates" },
+        { icon: Calendar, label: "Interviews", href: "/dashboard/recruiter/interviews" },
         { icon: Zap, label: "AI Talent Match", href: "/dashboard/matches", badge: "New" },
-        { icon: CheckCircle, label: "Placements", href: "/dashboard/leads" },
+        { icon: CheckCircle, label: "Placements", href: "/dashboard/recruiter/placements" },
         { icon: MessageSquare, label: "Messages", href: "/dashboard/messages", badge: "4" },
-        { icon: BarChart3, label: "Hiring Analytics", href: "/dashboard/reputation" },
+        { icon: BarChart3, label: "Hiring Analytics", href: "/dashboard/recruiter/analytics" },
       ];
 
     case "investor":
       return [
         { icon: LayoutDashboard, label: "Overview", href: "/dashboard/investor" },
-        { icon: Briefcase, label: "Portfolio", href: "/dashboard/marketplace" },
-        { icon: TrendingUp, label: "Deal Flow", href: "/dashboard/leads" },
+        { icon: Briefcase, label: "Portfolio", href: "/dashboard/investor/portfolio" },
+        { icon: TrendingUp, label: "Deal Flow", href: "/dashboard/investor/deals" },
         { icon: Zap, label: "Startup Matches", href: "/dashboard/matches", badge: "New" },
-        { icon: Network, label: "Founder Network", href: "/dashboard/network" },
-        { icon: PieChart, label: "Fund Analytics", href: "/dashboard/reputation" },
+        { icon: Network, label: "Founder Network", href: "/dashboard/investor/founders" },
+        { icon: PieChart, label: "Fund Analytics", href: "/dashboard/investor/analytics" },
         { icon: MessageSquare, label: "Messages", href: "/dashboard/messages", badge: "6" },
-        { icon: Calendar, label: "Pitch Events", href: "/dashboard/events" },
+        { icon: Calendar, label: "Pitch Events", href: "/dashboard/investor/events" },
       ];
 
     case "expert":
       return [
         { icon: LayoutDashboard, label: "Overview", href: "/dashboard/expert" },
-        { icon: BookOpen, label: "My Articles", href: "/dashboard/community" },
-        { icon: Target, label: "Mentorship", href: "/dashboard/matches" },
-        { icon: Video, label: "Events & Webinars", href: "/dashboard/events" },
-        { icon: Users, label: "My Followers", href: "/dashboard/network" },
+        { icon: BookOpen, label: "My Articles", href: "/dashboard/expert/articles" },
+        { icon: Target, label: "Mentorship", href: "/dashboard/expert/mentorship" },
+        { icon: Video, label: "Events & Webinars", href: "/dashboard/expert/events" },
+        { icon: Users, label: "My Followers", href: "/dashboard/expert/followers" },
         { icon: Star, label: "Reputation", href: "/dashboard/reputation" },
         { icon: MessageSquare, label: "Messages", href: "/dashboard/messages", badge: "8" },
-        { icon: Mic, label: "Speaking Requests", href: "/dashboard/leads" },
+        { icon: Mic, label: "Speaking Requests", href: "/dashboard/expert/speaking" },
       ];
 
     case "admin":
       return [
         { icon: LayoutDashboard, label: "Control Center", href: "/dashboard/admin" },
-        { icon: ShieldCheck, label: "Verification Queue", href: "/dashboard/network" },
-        { icon: AlertTriangle, label: "Fraud Alerts", href: "/dashboard/leads" },
-        { icon: Users, label: "User Management", href: "/dashboard/matches" },
-        { icon: Eye, label: "Content Moderation", href: "/dashboard/community" },
-        { icon: BarChart3, label: "Revenue Analytics", href: "/dashboard/reputation" },
-        { icon: Database, label: "System Health", href: "/dashboard/events" },
-        { icon: Flag, label: "Audit Logs", href: "/dashboard/marketplace" },
+        { icon: ShieldCheck, label: "Verification Queue", href: "/dashboard/admin/verifications" },
+        { icon: AlertTriangle, label: "Fraud Alerts", href: "/dashboard/admin/fraud" },
+        { icon: Users, label: "User Management", href: "/dashboard/admin/users" },
+        { icon: Eye, label: "Content Moderation", href: "/dashboard/admin/moderation" },
+        { icon: BarChart3, label: "Revenue Analytics", href: "/dashboard/admin/analytics" },
+        { icon: Database, label: "System Health", href: "/dashboard/admin/health" },
+        { icon: Flag, label: "Audit Logs", href: "/dashboard/admin/audits" },
       ];
 
     default:
@@ -229,9 +229,15 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         </div>
       )}
 
-      {collapsed && user?.avatar && (
+      {collapsed && (
         <div className="p-3 border-b border-sidebar-border flex justify-center">
-          <img src={user.avatar} alt={user.name} className="w-8 h-8 rounded-full object-cover ring-2 ring-sidebar-primary/30" />
+          {user?.avatar ? (
+            <img src={user.avatar} alt={user.name} className="w-8 h-8 rounded-full object-cover ring-2 ring-sidebar-primary/30" />
+          ) : (
+            <div className="w-8 h-8 rounded-full bg-sidebar-primary text-white flex items-center justify-center text-xs font-bold ring-2 ring-sidebar-primary/30">
+              {getInitials(user?.name || "U")}
+            </div>
+          )}
         </div>
       )}
 
@@ -403,11 +409,11 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
           {/* Search */}
           <div className="flex-1 max-w-md relative">
-            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
+            <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
             <input
               type="text"
               placeholder={role === "recruiter" ? "Search candidates, jobs, skills..." : role === "investor" ? "Search startups, founders, sectors..." : role === "admin" ? "Search users, alerts, reports..." : "Search connections, leads, opportunities..."}
-              className="w-full pl-9 pr-4 py-2 text-sm rounded-lg border border-input bg-muted/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:bg-background transition-all"
+              className="w-full pl-11 pr-4 py-2 text-sm rounded-lg border border-input bg-muted/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:bg-background transition-all"
             />
           </div>
 

@@ -10,6 +10,7 @@ import TrustScore from "@/components/features/TrustScore";
 import AnimatedCounter from "@/components/features/AnimatedCounter";
 import { TESTIMONIALS, PRICING_PLANS, FAQ_ITEMS, STATS, WORKFLOW_STEPS } from "@/constants";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/hooks/useAuth";
 import heroBg from "@/assets/hero-bg.jpg";
 import dashboardPreview from "@/assets/dashboard-preview.jpg";
 
@@ -51,6 +52,7 @@ const BENEFITS = [
 ];
 
 export default function Index() {
+  const { isAuthenticated } = useAuth();
   const [pricingAnnual, setPricingAnnual] = useState(true);
   const [openFaq, setOpenFaq] = useState<string | null>(null);
 
@@ -484,7 +486,22 @@ export default function Index() {
                 </ul>
 
                 <Link
-                  to="/register"
+                  to={
+                    isAuthenticated
+                      ? plan.monthlyPrice === 0
+                        ? "/dashboard"
+                        : "/payment"
+                      : "/register"
+                  }
+                  state={
+                    isAuthenticated && plan.monthlyPrice > 0
+                      ? {
+                          planName: plan.name,
+                          price: pricingAnnual ? plan.yearlyPrice : plan.monthlyPrice,
+                          billing: pricingAnnual ? "annual" : "monthly"
+                        }
+                      : undefined
+                  }
                   className={cn(
                     "block w-full text-center py-3 rounded-xl font-semibold text-sm transition-all duration-200",
                     plan.highlighted

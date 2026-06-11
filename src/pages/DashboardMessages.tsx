@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
 import { MessageSquare, Send, ShieldCheck, CheckCircle2, Search, MoreVertical, Phone, Video, Info } from "lucide-react";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import { useAuth } from "@/hooks/useAuth";
@@ -40,10 +41,36 @@ const INITIAL_THREADS = [
 
 export default function DashboardMessages() {
   const { user } = useAuth();
+  const location = useLocation();
   const [threads, setThreads] = useState(INITIAL_THREADS);
   const [activeThreadId, setActiveThreadId] = useState("t1");
   const [input, setInput] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const state = location.state as { startChatWith?: string; startChatAvatar?: string; startChatTitle?: string } | null;
+    if (state?.startChatWith) {
+      // Check if there is an existing thread with this person
+      const existing = threads.find((t) => t.name.toLowerCase() === state.startChatWith!.toLowerCase());
+      if (existing) {
+        setActiveThreadId(existing.id);
+      } else {
+        // Create a new temporary thread
+        const newThreadId = "t-temp-" + Date.now();
+        const newThread = {
+          id: newThreadId,
+          name: state.startChatWith,
+          title: state.startChatTitle || "Professional Contact",
+          avatar: state.startChatAvatar || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=60&h=60&fit=crop",
+          messages: [
+            { sender: "them", text: `Hi! Let's start a conversation here.`, time: "Just now" }
+          ]
+        };
+        setThreads((prev) => [newThread, ...prev]);
+        setActiveThreadId(newThreadId);
+      }
+    }
+  }, [location.state]);
 
   const activeThread = threads.find((t) => t.id === activeThreadId) || threads[0];
 
@@ -121,8 +148,8 @@ export default function DashboardMessages() {
               <MessageSquare size={20} className="text-primary" /> Messages
             </h1>
             <div className="relative">
-              <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-              <input placeholder="Search chat..." className="input-field pl-9 py-1.5 text-xs" />
+              <Search size={14} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
+              <input placeholder="Search chat..." className="input-field pl-11 py-1.5 text-xs" />
             </div>
           </div>
           <div className="flex-1 overflow-y-auto divide-y divide-border">

@@ -76,12 +76,12 @@ export default function DashboardMarketplace() {
             </p>
           </div>
           <div className="relative w-full sm:w-64">
-            <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+            <Search size={15} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search..."
-              className="input-field pl-9 py-1.5 text-xs"
+              className="input-field pl-11 py-1.5 text-xs"
             />
           </div>
         </div>

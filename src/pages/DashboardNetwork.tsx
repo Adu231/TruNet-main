@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserPlus, Search, Filter, ShieldCheck, MapPin, Building2, Users, MessageSquare, UserCheck } from "lucide-react";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import { cn, getTrustScoreBg } from "@/lib/utils";
@@ -19,9 +19,34 @@ const CONNECTIONS = [
 
 export default function DashboardNetwork() {
   const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const [tab, setTab] = useState<"all" | "connected" | "pending" | "suggestions">("all");
   const [connections, setConnections] = useState(CONNECTIONS);
+
+  // Invite states
+  const [isInviteOpen, setIsInviteOpen] = useState(false);
+  const [inviteName, setInviteName] = useState("");
+  const [inviteEmail, setInviteEmail] = useState("");
+  const [inviteMessage, setInviteMessage] = useState("Hi, I'd like to connect with you on TruNet, the secure verified professional network.");
+
+  const handleSendInvite = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!inviteEmail.trim()) {
+      toast.error("Please enter an email address.");
+      return;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(inviteEmail)) {
+      toast.error("Please enter a valid email address.");
+      return;
+    }
+    toast.success(`Invitation successfully sent to ${inviteName || inviteEmail}!`);
+    setIsInviteOpen(false);
+    setInviteName("");
+    setInviteEmail("");
+    setInviteMessage("Hi, I'd like to connect with you on TruNet, the secure verified professional network.");
+  };
 
   if (!isAuthenticated) {
     return (
@@ -50,7 +75,7 @@ export default function DashboardNetwork() {
             <h1 className="text-2xl font-display font-bold text-foreground">My Network</h1>
             <p className="text-muted-foreground text-sm mt-0.5">847 connections · 12 pending · 24 suggestions</p>
           </div>
-          <button className="btn-primary text-sm py-2">
+          <button onClick={() => setIsInviteOpen(true)} className="btn-primary text-sm py-2">
             <UserPlus size={15} /> Invite Contacts
           </button>
         </div>
@@ -73,12 +98,12 @@ export default function DashboardNetwork() {
 
         {/* Search */}
         <div className="relative mb-6 max-w-md">
-          <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground" />
+          <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search by name or company..."
-            className="input-field pl-10"
+            className="input-field pl-11"
           />
         </div>
 
@@ -117,7 +142,10 @@ export default function DashboardNetwork() {
               <div className="flex items-center gap-2">
                 {conn.status === "connected" ? (
                   <>
-                    <button className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg bg-muted hover:bg-muted/80 text-xs font-medium transition-colors">
+                    <button
+                      onClick={() => navigate("/dashboard/messages", { state: { startChatWith: conn.name, startChatAvatar: conn.avatar, startChatTitle: conn.title } })}
+                      className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg bg-muted hover:bg-muted/80 text-xs font-medium transition-colors"
+                    >
                       <MessageSquare size={12} /> Message
                     </button>
                     <button className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg border border-border hover:bg-muted text-xs font-medium transition-colors">
@@ -149,6 +177,64 @@ export default function DashboardNetwork() {
           </div>
         )}
       </div>
+
+      {/* Invite Contacts Modal */}
+      {isInviteOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsInviteOpen(false)} />
+          <div className="relative bg-card border border-border rounded-3xl p-6 w-full max-w-md shadow-2xl animate-fade-in-up">
+            <h3 className="text-lg font-display font-bold text-foreground mb-1">Invite Contacts</h3>
+            <p className="text-xs text-muted-foreground mb-4">Send a secure invitation link to join your TruNet circle.</p>
+
+            <form onSubmit={handleSendInvite} className="space-y-4">
+              <div>
+                <label className="block text-xs font-semibold text-muted-foreground mb-1">Full Name (Optional)</label>
+                <input
+                  value={inviteName}
+                  onChange={(e) => setInviteName(e.target.value)}
+                  placeholder="e.g. John Doe"
+                  className="input-field py-2"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-semibold text-muted-foreground mb-1">Email Address</label>
+                <input
+                  type="email"
+                  required
+                  value={inviteEmail}
+                  onChange={(e) => setInviteEmail(e.target.value)}
+                  placeholder="e.g. name@company.com"
+                  className="input-field py-2"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-semibold text-muted-foreground mb-1">Invitation Message</label>
+                <textarea
+                  value={inviteMessage}
+                  onChange={(e) => setInviteMessage(e.target.value)}
+                  rows={3}
+                  className="w-full px-4 py-2.5 rounded-lg border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring text-xs leading-relaxed"
+                />
+              </div>
+              <div className="flex gap-2 justify-end pt-2">
+                <button
+                  type="button"
+                  onClick={() => setIsInviteOpen(false)}
+                  className="btn-secondary text-xs py-2 px-4"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="btn-primary text-xs py-2 px-4"
+                >
+                  Send Invitation
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </DashboardLayout>
   );
 }

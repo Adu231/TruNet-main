@@ -106,12 +106,12 @@ export default function DashboardLeads() {
         {/* Filters */}
         <div className="flex flex-col sm:flex-row gap-3 mb-5">
           <div className="relative flex-1 max-w-xs">
-            <Search size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground" />
+            <Search size={15} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search leads..."
-              className="input-field pl-10 py-2 text-sm"
+              className="input-field pl-11 py-2 text-sm"
             />
           </div>
           <div className="flex gap-2">

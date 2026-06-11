@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import About from "./pages/About";
 import Features from "./pages/Features";
 import Pricing from "./pages/Pricing";
+import Payment from "./pages/Payment";
 import Contact from "./pages/Contact";
 import Dashboard from "./pages/Dashboard";
 import DashboardProfessional from "./pages/DashboardProfessional";
@@ -26,6 +27,42 @@ import DashboardMessages from "./pages/DashboardMessages";
 import DashboardEvents from "./pages/DashboardEvents";
 import DashboardCommunity from "./pages/DashboardCommunity";
 import DashboardRecruitment from "./pages/DashboardRecruitment";
+import DashboardNotifications from "./pages/DashboardNotifications";
+
+import AdminVerifications from "./pages/AdminVerifications";
+import AdminFraud from "./pages/AdminFraud";
+import AdminUsers from "./pages/AdminUsers";
+import AdminModeration from "./pages/AdminModeration";
+import AdminAnalytics from "./pages/AdminAnalytics";
+import AdminSystemHealth from "./pages/AdminSystemHealth";
+import AdminAuditLogs from "./pages/AdminAuditLogs";
+
+import FreelancerProposals from "./pages/FreelancerProposals";
+import FreelancerEarnings from "./pages/FreelancerEarnings";
+import FreelancerPortfolio from "./pages/FreelancerPortfolio";
+import FreelancerProjects from "./pages/FreelancerProjects";
+
+import RecruiterCandidates from "./pages/RecruiterCandidates";
+import RecruiterInterviews from "./pages/RecruiterInterviews";
+import RecruiterPlacements from "./pages/RecruiterPlacements";
+import RecruiterAnalytics from "./pages/RecruiterAnalytics";
+
+import InvestorFounders from "./pages/InvestorFounders";
+import InvestorAnalytics from "./pages/InvestorAnalytics";
+import InvestorEvents from "./pages/InvestorEvents";
+import InvestorPortfolio from "./pages/InvestorPortfolio";
+import InvestorDeals from "./pages/InvestorDeals";
+
+import ExpertArticles from "./pages/ExpertArticles";
+import ExpertMentorship from "./pages/ExpertMentorship";
+import ExpertFollowers from "./pages/ExpertFollowers";
+import ExpertSpeaking from "./pages/ExpertSpeaking";
+import ExpertEvents from "./pages/ExpertEvents";
+
+import BusinessAnalytics from "./pages/BusinessAnalytics";
+import BusinessServices from "./pages/BusinessServices";
+import BusinessPartnerships from "./pages/BusinessPartnerships";
+import BusinessEvents from "./pages/BusinessEvents";
 
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -61,6 +98,7 @@ const App = () => (
           <Route path="/about" element={<About />} />
           <Route path="/features" element={<Features />} />
           <Route path="/pricing" element={<Pricing />} />
+          <Route path="/payment" element={<Payment />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -83,6 +121,47 @@ const App = () => (
           <Route path="/dashboard/expert" element={<DashboardExpert />} />
           <Route path="/dashboard/admin" element={<DashboardAdmin />} />
 
+          {/* Admin Subpages */}
+          <Route path="/dashboard/admin/verifications" element={<AdminVerifications />} />
+          <Route path="/dashboard/admin/fraud" element={<AdminFraud />} />
+          <Route path="/dashboard/admin/users" element={<AdminUsers />} />
+          <Route path="/dashboard/admin/moderation" element={<AdminModeration />} />
+          <Route path="/dashboard/admin/analytics" element={<AdminAnalytics />} />
+          <Route path="/dashboard/admin/health" element={<AdminSystemHealth />} />
+          <Route path="/dashboard/admin/audits" element={<AdminAuditLogs />} />
+
+          {/* Business Subpages */}
+          <Route path="/dashboard/business/analytics" element={<BusinessAnalytics />} />
+          <Route path="/dashboard/business/services" element={<BusinessServices />} />
+          <Route path="/dashboard/business/partnerships" element={<BusinessPartnerships />} />
+          <Route path="/dashboard/business/events" element={<BusinessEvents />} />
+
+          {/* Freelancer Subpages */}
+          <Route path="/dashboard/freelancer/proposals" element={<FreelancerProposals />} />
+          <Route path="/dashboard/freelancer/earnings" element={<FreelancerEarnings />} />
+          <Route path="/dashboard/freelancer/portfolio" element={<FreelancerPortfolio />} />
+          <Route path="/dashboard/freelancer/projects" element={<FreelancerProjects />} />
+
+          {/* Recruiter Subpages */}
+          <Route path="/dashboard/recruiter/candidates" element={<RecruiterCandidates />} />
+          <Route path="/dashboard/recruiter/interviews" element={<RecruiterInterviews />} />
+          <Route path="/dashboard/recruiter/placements" element={<RecruiterPlacements />} />
+          <Route path="/dashboard/recruiter/analytics" element={<RecruiterAnalytics />} />
+
+          {/* Investor Subpages */}
+          <Route path="/dashboard/investor/founders" element={<InvestorFounders />} />
+          <Route path="/dashboard/investor/analytics" element={<InvestorAnalytics />} />
+          <Route path="/dashboard/investor/events" element={<InvestorEvents />} />
+          <Route path="/dashboard/investor/portfolio" element={<InvestorPortfolio />} />
+          <Route path="/dashboard/investor/deals" element={<InvestorDeals />} />
+
+          {/* Expert Subpages */}
+          <Route path="/dashboard/expert/articles" element={<ExpertArticles />} />
+          <Route path="/dashboard/expert/mentorship" element={<ExpertMentorship />} />
+          <Route path="/dashboard/expert/followers" element={<ExpertFollowers />} />
+          <Route path="/dashboard/expert/speaking" element={<ExpertSpeaking />} />
+          <Route path="/dashboard/expert/events" element={<ExpertEvents />} />
+
           {/* Shared Dashboard Pages */}
           <Route path="/dashboard/network" element={<DashboardNetwork />} />
           <Route path="/dashboard/leads" element={<DashboardLeads />} />
@@ -93,7 +172,7 @@ const App = () => (
           <Route path="/dashboard/events" element={<DashboardEvents />} />
           <Route path="/dashboard/community" element={<DashboardCommunity />} />
           <Route path="/dashboard/recruitment" element={<DashboardRecruitment />} />
-          <Route path="/dashboard/notifications" element={<Dashboard />} />
+          <Route path="/dashboard/notifications" element={<DashboardNotifications />} />
 
           {/* Account */}
           <Route path="/profile" element={<Profile />} />
