@@ -74,14 +74,31 @@ import FAQPage from "./pages/FAQPage";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import NotFound from "./pages/NotFound";
+import Careers from "./pages/Careers";
+import PressKit from "./pages/PressKit";
+import ApiDocs from "./pages/ApiDocs";
+import StatusPage from "./pages/StatusPage";
+import SecurityPage from "./pages/SecurityPage";
+import GdprPage from "./pages/GdprPage";
+import CookiePolicy from "./pages/CookiePolicy";
 
 const queryClient = new QueryClient();
 
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "instant" });
-  }, [pathname]);
+    if (hash) {
+      setTimeout(() => {
+        const id = hash.replace("#", "");
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    } else {
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
+  }, [pathname, hash]);
   return null;
 }
 
@@ -108,6 +125,13 @@ const App = () => (
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
+          <Route path="/careers" element={<Careers />} />
+          <Route path="/press" element={<PressKit />} />
+          <Route path="/api-docs" element={<ApiDocs />} />
+          <Route path="/status" element={<StatusPage />} />
+          <Route path="/security" element={<SecurityPage />} />
+          <Route path="/gdpr" element={<GdprPage />} />
+          <Route path="/cookie-policy" element={<CookiePolicy />} />
 
           {/* Dashboard Router (redirects based on role) */}
           <Route path="/dashboard" element={<Dashboard />} />

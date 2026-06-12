@@ -9,28 +9,28 @@ const FOOTER_LINKS = {
     { label: "Pricing", href: "/pricing" },
     { label: "Dashboard", href: "/dashboard" },
     { label: "AI Matchmaking", href: "/features#ai-matchmaking" },
-    { label: "Trust Score", href: "/features#trust-score" },
+    { label: "Trust Score", href: "/features#verified-identity" },
   ],
   Company: [
     { label: "About TruNet", href: "/about" },
     { label: "Blog", href: "/blog" },
     { label: "Contact Us", href: "/contact" },
-    { label: "Careers", href: "/about#careers" },
-    { label: "Press Kit", href: "/about#press" },
+    { label: "Careers", href: "/careers" },
+    { label: "Press Kit", href: "/press" },
   ],
   Resources: [
     { label: "Help Center", href: "/faq" },
     { label: "FAQ", href: "/faq" },
-    { label: "Community", href: "/dashboard" },
-    { label: "API Docs", href: "/features#api" },
-    { label: "Status", href: "#" },
+    { label: "Community", href: "/dashboard/community" },
+    { label: "API Docs", href: "/api-docs" },
+    { label: "Status", href: "/status" },
   ],
   Legal: [
     { label: "Privacy Policy", href: "/privacy" },
     { label: "Terms of Service", href: "/terms" },
-    { label: "Cookie Policy", href: "/privacy#cookies" },
-    { label: "Security", href: "/privacy#security" },
-    { label: "GDPR", href: "/privacy#gdpr" },
+    { label: "Cookie Policy", href: "/cookie-policy" },
+    { label: "Security", href: "/security" },
+    { label: "GDPR", href: "/gdpr" },
   ],
 };
 
@@ -83,6 +83,19 @@ export default function Footer() {
                     <li key={link.label}>
                       <Link
                         to={link.href}
+                        onClick={() => {
+                          const [path, hash] = link.href.split("#");
+                          if (window.location.pathname === path) {
+                            if (hash) {
+                              const el = document.getElementById(hash);
+                              if (el) {
+                                el.scrollIntoView({ behavior: "smooth" });
+                              }
+                            } else {
+                              window.scrollTo({ top: 0, behavior: "smooth" });
+                            }
+                          }
+                        }}
                         className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-150"
                       >
                         {link.label}

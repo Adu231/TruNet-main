@@ -57,6 +57,11 @@ export default function Navbar() {
               <Link
                 key={item.href}
                 to={item.href}
+                onClick={() => {
+                  if (location.pathname === item.href) {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }
+                }}
                 className={cn(
                   "px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200",
                   location.pathname === item.href
@@ -200,6 +205,11 @@ export default function Navbar() {
               <Link
                 key={item.href}
                 to={item.href}
+                onClick={() => {
+                  if (location.pathname === item.href) {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }
+                }}
                 className={cn(
                   "px-4 py-3 rounded-lg text-sm font-medium transition-colors",
                   location.pathname === item.href
