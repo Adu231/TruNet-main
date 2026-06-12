@@ -3,6 +3,8 @@ import { Shield, Twitter, Linkedin, Github, Mail, ArrowRight } from "lucide-reac
 import TruNetLogo from "@/components/features/TruNetLogo";
 import { toast } from "sonner";
 
+import { useAuth } from "@/hooks/useAuth";
+
 const FOOTER_LINKS = {
   Product: [
     { label: "Features", href: "/features" },
@@ -35,6 +37,8 @@ const FOOTER_LINKS = {
 };
 
 export default function Footer() {
+  const { isAuthenticated } = useAuth();
+  
   const handleNewsletter = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
@@ -79,29 +83,35 @@ export default function Footer() {
               <div key={category}>
                 <p className="text-sm font-semibold text-foreground mb-4">{category}</p>
                 <ul className="space-y-2.5">
-                  {links.map((link) => (
-                    <li key={link.label}>
-                      <Link
-                        to={link.href}
-                        onClick={() => {
-                          const [path, hash] = link.href.split("#");
-                          if (window.location.pathname === path) {
-                            if (hash) {
-                              const el = document.getElementById(hash);
-                              if (el) {
-                                el.scrollIntoView({ behavior: "smooth" });
+                  {links.map((link) => {
+                    const targetHref = (!isAuthenticated && (link.href === "/dashboard/community" || link.href === "/dashboard"))
+                      ? "/login"
+                      : link.href;
+
+                    return (
+                      <li key={link.label}>
+                        <Link
+                          to={targetHref}
+                          onClick={() => {
+                            const [path, hash] = targetHref.split("#");
+                            if (window.location.pathname === path) {
+                              if (hash) {
+                                const el = document.getElementById(hash);
+                                if (el) {
+                                  el.scrollIntoView({ behavior: "smooth" });
+                                }
+                              } else {
+                                window.scrollTo({ top: 0, behavior: "smooth" });
                               }
-                            } else {
-                              window.scrollTo({ top: 0, behavior: "smooth" });
                             }
-                          }
-                        }}
-                        className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-150"
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
+                          }}
+                          className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-150"
+                        >
+                          {link.label}
+                        </Link>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             ))}

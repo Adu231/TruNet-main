@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, Outlet } from "react-router-dom";
 import { useEffect } from "react";
 import Index from "./pages/Index";
 import About from "./pages/About";
@@ -81,6 +81,7 @@ import StatusPage from "./pages/StatusPage";
 import SecurityPage from "./pages/SecurityPage";
 import GdprPage from "./pages/GdprPage";
 import CookiePolicy from "./pages/CookiePolicy";
+import ProtectedRoute from "@/components/auth/ProtectedRoute";
 
 const queryClient = new QueryClient();
 
@@ -133,74 +134,76 @@ const App = () => (
           <Route path="/gdpr" element={<GdprPage />} />
           <Route path="/cookie-policy" element={<CookiePolicy />} />
 
-          {/* Dashboard Router (redirects based on role) */}
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route element={<ProtectedRoute><Outlet /></ProtectedRoute>}>
+            {/* Dashboard Router (redirects based on role) */}
+            <Route path="/dashboard" element={<Dashboard />} />
 
-          {/* Role-specific Dashboards */}
-          <Route path="/dashboard/professional" element={<DashboardProfessional />} />
-          <Route path="/dashboard/business" element={<DashboardBusiness />} />
-          <Route path="/dashboard/freelancer" element={<DashboardFreelancer />} />
-          <Route path="/dashboard/recruiter" element={<DashboardRecruiter />} />
-          <Route path="/dashboard/investor" element={<DashboardInvestor />} />
-          <Route path="/dashboard/expert" element={<DashboardExpert />} />
-          <Route path="/dashboard/admin" element={<DashboardAdmin />} />
+            {/* Role-specific Dashboards */}
+            <Route path="/dashboard/professional" element={<DashboardProfessional />} />
+            <Route path="/dashboard/business" element={<DashboardBusiness />} />
+            <Route path="/dashboard/freelancer" element={<DashboardFreelancer />} />
+            <Route path="/dashboard/recruiter" element={<DashboardRecruiter />} />
+            <Route path="/dashboard/investor" element={<DashboardInvestor />} />
+            <Route path="/dashboard/expert" element={<DashboardExpert />} />
+            <Route path="/dashboard/admin" element={<DashboardAdmin />} />
 
-          {/* Admin Subpages */}
-          <Route path="/dashboard/admin/verifications" element={<AdminVerifications />} />
-          <Route path="/dashboard/admin/fraud" element={<AdminFraud />} />
-          <Route path="/dashboard/admin/users" element={<AdminUsers />} />
-          <Route path="/dashboard/admin/moderation" element={<AdminModeration />} />
-          <Route path="/dashboard/admin/analytics" element={<AdminAnalytics />} />
-          <Route path="/dashboard/admin/health" element={<AdminSystemHealth />} />
-          <Route path="/dashboard/admin/audits" element={<AdminAuditLogs />} />
+            {/* Admin Subpages */}
+            <Route path="/dashboard/admin/verifications" element={<AdminVerifications />} />
+            <Route path="/dashboard/admin/fraud" element={<AdminFraud />} />
+            <Route path="/dashboard/admin/users" element={<AdminUsers />} />
+            <Route path="/dashboard/admin/moderation" element={<AdminModeration />} />
+            <Route path="/dashboard/admin/analytics" element={<AdminAnalytics />} />
+            <Route path="/dashboard/admin/health" element={<AdminSystemHealth />} />
+            <Route path="/dashboard/admin/audits" element={<AdminAuditLogs />} />
 
-          {/* Business Subpages */}
-          <Route path="/dashboard/business/analytics" element={<BusinessAnalytics />} />
-          <Route path="/dashboard/business/services" element={<BusinessServices />} />
-          <Route path="/dashboard/business/partnerships" element={<BusinessPartnerships />} />
-          <Route path="/dashboard/business/events" element={<BusinessEvents />} />
+            {/* Business Subpages */}
+            <Route path="/dashboard/business/analytics" element={<BusinessAnalytics />} />
+            <Route path="/dashboard/business/services" element={<BusinessServices />} />
+            <Route path="/dashboard/business/partnerships" element={<BusinessPartnerships />} />
+            <Route path="/dashboard/business/events" element={<BusinessEvents />} />
 
-          {/* Freelancer Subpages */}
-          <Route path="/dashboard/freelancer/proposals" element={<FreelancerProposals />} />
-          <Route path="/dashboard/freelancer/earnings" element={<FreelancerEarnings />} />
-          <Route path="/dashboard/freelancer/portfolio" element={<FreelancerPortfolio />} />
-          <Route path="/dashboard/freelancer/projects" element={<FreelancerProjects />} />
+            {/* Freelancer Subpages */}
+            <Route path="/dashboard/freelancer/proposals" element={<FreelancerProposals />} />
+            <Route path="/dashboard/freelancer/earnings" element={<FreelancerEarnings />} />
+            <Route path="/dashboard/freelancer/portfolio" element={<FreelancerPortfolio />} />
+            <Route path="/dashboard/freelancer/projects" element={<FreelancerProjects />} />
 
-          {/* Recruiter Subpages */}
-          <Route path="/dashboard/recruiter/candidates" element={<RecruiterCandidates />} />
-          <Route path="/dashboard/recruiter/interviews" element={<RecruiterInterviews />} />
-          <Route path="/dashboard/recruiter/placements" element={<RecruiterPlacements />} />
-          <Route path="/dashboard/recruiter/analytics" element={<RecruiterAnalytics />} />
+            {/* Recruiter Subpages */}
+            <Route path="/dashboard/recruiter/candidates" element={<RecruiterCandidates />} />
+            <Route path="/dashboard/recruiter/interviews" element={<RecruiterInterviews />} />
+            <Route path="/dashboard/recruiter/placements" element={<RecruiterPlacements />} />
+            <Route path="/dashboard/recruiter/analytics" element={<RecruiterAnalytics />} />
 
-          {/* Investor Subpages */}
-          <Route path="/dashboard/investor/founders" element={<InvestorFounders />} />
-          <Route path="/dashboard/investor/analytics" element={<InvestorAnalytics />} />
-          <Route path="/dashboard/investor/events" element={<InvestorEvents />} />
-          <Route path="/dashboard/investor/portfolio" element={<InvestorPortfolio />} />
-          <Route path="/dashboard/investor/deals" element={<InvestorDeals />} />
+            {/* Investor Subpages */}
+            <Route path="/dashboard/investor/founders" element={<InvestorFounders />} />
+            <Route path="/dashboard/investor/analytics" element={<InvestorAnalytics />} />
+            <Route path="/dashboard/investor/events" element={<InvestorEvents />} />
+            <Route path="/dashboard/investor/portfolio" element={<InvestorPortfolio />} />
+            <Route path="/dashboard/investor/deals" element={<InvestorDeals />} />
 
-          {/* Expert Subpages */}
-          <Route path="/dashboard/expert/articles" element={<ExpertArticles />} />
-          <Route path="/dashboard/expert/mentorship" element={<ExpertMentorship />} />
-          <Route path="/dashboard/expert/followers" element={<ExpertFollowers />} />
-          <Route path="/dashboard/expert/speaking" element={<ExpertSpeaking />} />
-          <Route path="/dashboard/expert/events" element={<ExpertEvents />} />
+            {/* Expert Subpages */}
+            <Route path="/dashboard/expert/articles" element={<ExpertArticles />} />
+            <Route path="/dashboard/expert/mentorship" element={<ExpertMentorship />} />
+            <Route path="/dashboard/expert/followers" element={<ExpertFollowers />} />
+            <Route path="/dashboard/expert/speaking" element={<ExpertSpeaking />} />
+            <Route path="/dashboard/expert/events" element={<ExpertEvents />} />
 
-          {/* Shared Dashboard Pages */}
-          <Route path="/dashboard/network" element={<DashboardNetwork />} />
-          <Route path="/dashboard/leads" element={<DashboardLeads />} />
-          <Route path="/dashboard/matches" element={<DashboardMatches />} />
-          <Route path="/dashboard/marketplace" element={<DashboardMarketplace />} />
-          <Route path="/dashboard/reputation" element={<DashboardReputation />} />
-          <Route path="/dashboard/messages" element={<DashboardMessages />} />
-          <Route path="/dashboard/events" element={<DashboardEvents />} />
-          <Route path="/dashboard/community" element={<DashboardCommunity />} />
-          <Route path="/dashboard/recruitment" element={<DashboardRecruitment />} />
-          <Route path="/dashboard/notifications" element={<DashboardNotifications />} />
+            {/* Shared Dashboard Pages */}
+            <Route path="/dashboard/network" element={<DashboardNetwork />} />
+            <Route path="/dashboard/leads" element={<DashboardLeads />} />
+            <Route path="/dashboard/matches" element={<DashboardMatches />} />
+            <Route path="/dashboard/marketplace" element={<DashboardMarketplace />} />
+            <Route path="/dashboard/reputation" element={<DashboardReputation />} />
+            <Route path="/dashboard/messages" element={<DashboardMessages />} />
+            <Route path="/dashboard/events" element={<DashboardEvents />} />
+            <Route path="/dashboard/community" element={<DashboardCommunity />} />
+            <Route path="/dashboard/recruitment" element={<DashboardRecruitment />} />
+            <Route path="/dashboard/notifications" element={<DashboardNotifications />} />
 
-          {/* Account */}
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/settings" element={<SettingsPage />} />
+            {/* Account */}
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/settings" element={<SettingsPage />} />
+          </Route>
 
           {/* 404 */}
           <Route path="*" element={<NotFound />} />

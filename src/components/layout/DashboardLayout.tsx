@@ -7,7 +7,8 @@ import {
   Target, DollarSign, Handshake, BarChart3, FileText,
   CheckCircle, AlertTriangle, Globe, Mic, Award, Video,
   UserCheck, Wallet, PieChart, TrendingDown, Lightbulb,
-  ClipboardList, Building2, ShieldCheck, Eye, Database, Flag
+  ClipboardList, Building2, ShieldCheck, Eye, Database, Flag,
+  Sun, Moon
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useTheme } from "@/hooks/useTheme";
@@ -161,7 +162,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const location = useLocation();
   const navigate = useNavigate();
   const { user, logout } = useAuth();
-  const { isDark } = useTheme();
+  const { isDark, toggleTheme } = useTheme();
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -430,6 +431,14 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             <span className={cn("hidden sm:inline-block text-[11px] font-semibold px-2.5 py-1 rounded-full border", role === "admin" ? "border-red-200 dark:border-red-800 text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/10" : role === "expert" ? "border-pink-200 dark:border-pink-800 text-pink-600 dark:text-pink-400 bg-pink-50 dark:bg-pink-900/10" : "border-blue-200 dark:border-blue-800 text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/10")}>
               {getRoleLabel(role)}
             </span>
+
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+              aria-label="Toggle theme"
+            >
+              {isDark ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
 
             <Link
               to="/dashboard/notifications"

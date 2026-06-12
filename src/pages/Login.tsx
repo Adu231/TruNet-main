@@ -67,10 +67,14 @@ export default function Login() {
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-600/15 rounded-full blur-3xl" />
         <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl" />
 
-        <div className="relative z-10 flex flex-col h-full p-12">
-          <TruNetLogo variant="light" size="md" />
+        <div className="relative z-10 flex flex-col h-full px-16 py-12 items-center justify-between">
+          <div className="w-full max-w-md">
+            <Link to="/" className="inline-block hover:opacity-90 transition-opacity">
+              <TruNetLogo variant="light" size="md" />
+            </Link>
+          </div>
 
-          <div className="flex-1 flex flex-col justify-center max-w-md">
+          <div className="flex-1 flex flex-col justify-center max-w-md w-full my-8">
             <div className="mb-8">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 text-white/80 text-sm mb-6">
                 <ShieldCheck size={14} />
@@ -106,7 +110,9 @@ export default function Login() {
             </div>
           </div>
 
-          <p className="relative z-10 text-white/30 text-xs">© 2026 TruNet Inc. All rights reserved.</p>
+          <div className="w-full max-w-md">
+            <p className="text-white/30 text-xs">© 2026 TruNet Inc. All rights reserved.</p>
+          </div>
         </div>
       </div>
 
@@ -114,7 +120,9 @@ export default function Login() {
       <div className="flex-1 flex flex-col items-center justify-center px-6 py-12 bg-background overflow-y-auto">
         <div className="w-full max-w-md">
           <div className="lg:hidden mb-8">
-            <TruNetLogo />
+            <Link to="/" className="inline-block hover:opacity-90 transition-opacity">
+              <TruNetLogo />
+            </Link>
           </div>
 
           <div className="mb-6">

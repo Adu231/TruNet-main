@@ -11,7 +11,7 @@ const INITIAL_THREADS = [
     id: "t1",
     name: "Sarah Mitchell",
     title: "Founder & CEO, Apex Ventures",
-    avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=60&h=60&fit=crop&crop=face",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=60&h=60&fit=crop&crop=face",
     messages: [
       { sender: "them", text: "Hi! I saw your profile on TruNet. We are looking for a strategy consultant for our Q3 launch.", time: "10:30 AM" },
       { sender: "me", text: "Hello Sarah! Thanks for reaching out. I'd love to help. What are the key areas you need assistance with?", time: "10:32 AM" },

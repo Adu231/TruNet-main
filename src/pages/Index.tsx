@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight, ShieldCheck, Sparkles, TrendingUp, Star, Network, BarChart3,
-  Play, CheckCircle, ChevronDown, Quote, Check, Users, Zap, Globe
+  Play, CheckCircle, ChevronDown, Quote, Check, Users, Zap, Globe, X
 } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -55,6 +55,7 @@ export default function Index() {
   const { isAuthenticated } = useAuth();
   const [pricingAnnual, setPricingAnnual] = useState(true);
   const [openFaq, setOpenFaq] = useState<string | null>(null);
+  const [showVideoModal, setShowVideoModal] = useState(false);
 
   const featuresRef = useRef<HTMLElement>(null);
 
@@ -98,7 +99,7 @@ export default function Index() {
               Start for Free <ArrowRight size={32} />
             </Link>
             <button
-              onClick={() => featuresRef.current?.scrollIntoView({ behavior: "smooth" })}
+              onClick={() => setShowVideoModal(true)}
               className="flex items-center justify-center gap-2 w-full sm:w-[240px] py-3.5 rounded-lg border border-white/20 text-white/80 hover:text-white hover:border-white/40 hover:bg-white/5 transition-all duration-200 text-base font-medium"
             >
               <Play size={12} fill="currentColor" /> See How It Works
@@ -598,6 +599,60 @@ export default function Index() {
 
       {/* ─── 10. FOOTER ──────────────────────────────────────────────────────── */}
       <Footer />
+
+      {/* Video Modal */}
+      {showVideoModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          {/* Backdrop */}
+          <div 
+            className="absolute inset-0 bg-black/80 backdrop-blur-md" 
+            onClick={() => setShowVideoModal(false)} 
+          />
+          
+          {/* Content Container */}
+          <div className="relative bg-zinc-950 border border-zinc-800 rounded-3xl overflow-hidden w-full max-w-4xl shadow-2xl animate-scale-in">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-800 bg-zinc-900/50">
+              <div className="flex items-center gap-2">
+                <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="text-sm font-semibold text-white font-display">TruNet Product Walkthrough</span>
+              </div>
+              <button 
+                onClick={() => setShowVideoModal(false)}
+                className="p-1 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors"
+                aria-label="Close modal"
+              >
+                <X size={18} />
+              </button>
+            </div>
+            
+            {/* Video Aspect Ratio Wrapper */}
+            <div className="aspect-video bg-black relative">
+              <video
+                src="https://assets.mixkit.co/videos/preview/mixkit-data-screens-with-charts-and-graphs-42007-large.mp4"
+                controls
+                autoPlay
+                className="w-full h-full object-cover"
+                poster="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&fit=crop"
+              />
+            </div>
+            
+            {/* Modal Footer / Features Overlay */}
+            <div className="p-5 bg-zinc-900/50 border-t border-zinc-800 text-xs text-zinc-400 flex flex-wrap items-center justify-between gap-4">
+              <p>Demo showcasing AI Matches, Verification queue, and Lead Pipeline integration.</p>
+              <div className="flex items-center gap-3">
+                <Link 
+                  to="/register" 
+                  onClick={() => setShowVideoModal(false)}
+                  className="px-4 py-2 rounded-lg bg-primary text-white font-semibold hover:opacity-90 transition-opacity animate-pulse"
+                >
+                  Get Verified Now
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

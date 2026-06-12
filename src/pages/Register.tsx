@@ -61,9 +61,14 @@ export default function Register() {
       {/* Left Panel */}
       <div className="hidden lg:flex lg:w-2/5 flex-col relative overflow-hidden mesh-bg">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/50 via-transparent to-emerald-900/20" />
-        <div className="relative z-10 flex flex-col h-full p-12">
-          <TruNetLogo variant="light" />
-          <div className="flex-1 flex flex-col justify-center">
+        <div className="relative z-10 flex flex-col h-full px-16 py-12 items-center justify-between">
+          <div className="w-full max-w-md">
+            <Link to="/" className="inline-block hover:opacity-90 transition-opacity">
+              <TruNetLogo variant="light" />
+            </Link>
+          </div>
+          
+          <div className="flex-1 flex flex-col justify-center max-w-md w-full my-8">
             <h2 className="text-4xl font-display font-bold text-white mb-6 leading-tight">
               Join the World's Most Trusted<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">
@@ -86,13 +91,21 @@ export default function Register() {
               ))}
             </div>
           </div>
+
+          <div className="w-full max-w-md">
+            <p className="text-white/30 text-xs">© 2026 TruNet Inc. All rights reserved.</p>
+          </div>
         </div>
       </div>
 
       {/* Right Panel */}
       <div className="flex-1 flex flex-col items-center justify-center px-6 py-12 bg-background overflow-y-auto">
         <div className="w-full max-w-md">
-          <div className="lg:hidden mb-8"><TruNetLogo /></div>
+          <div className="lg:hidden mb-8">
+            <Link to="/" className="inline-block hover:opacity-90 transition-opacity">
+              <TruNetLogo />
+            </Link>
+          </div>
 
           {/* Progress */}
           <div className="flex items-center gap-3 mb-8">

@@ -17,7 +17,7 @@ const HISTORICAL_SCORE = [
 ];
 
 const REVIEWS = [
-  { id: "r1", client: "Sarah Mitchell", rating: 5, text: "Exceptional consulting quality. Helped us scale our B2B funnel by 60%. Absolute professional.", project: "Enterprise SaaS Funnel Strategy", avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=60&h=60&fit=crop&crop=face", date: "June 2, 2026" },
+  { id: "r1", client: "Sarah Mitchell", rating: 5, text: "Exceptional consulting quality. Helped us scale our B2B funnel by 60%. Absolute professional.", project: "Enterprise SaaS Funnel Strategy", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=60&h=60&fit=crop&crop=face", date: "June 2, 2026" },
   { id: "r2", client: "Tom Bradley", rating: 5, text: "Exceeded all expectations. Very strategic thinker with deep industry knowledge.", project: "Pitch Deck Review", avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=60&h=60&fit=crop&crop=face", date: "May 18, 2026" }
 ];
 
