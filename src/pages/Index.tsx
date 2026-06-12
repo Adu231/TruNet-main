@@ -93,15 +93,15 @@ export default function Index() {
             TruNet is the only professional network where every profile is verified, every connection is meaningful, and every opportunity is qualified through AI-powered trust intelligence.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 animate-fade-in-up delay-300">
-            <Link to="/register" className="btn-primary text-base px-8 py-3.5 shadow-brand-lg">
-              Start for Free <ArrowRight size={18} />
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 animate-fade-in-up delay-300 w-full px-4">
+            <Link to="/register" className="btn-primary text-base w-full sm:w-[240px] py-3.5 shadow-brand-lg">
+              Start for Free <ArrowRight size={32} />
             </Link>
             <button
               onClick={() => featuresRef.current?.scrollIntoView({ behavior: "smooth" })}
-              className="flex items-center gap-2 px-8 py-3.5 rounded-lg border border-white/20 text-white/80 hover:text-white hover:border-white/40 hover:bg-white/5 transition-all duration-200 text-base font-medium"
+              className="flex items-center justify-center gap-2 w-full sm:w-[240px] py-3.5 rounded-lg border border-white/20 text-white/80 hover:text-white hover:border-white/40 hover:bg-white/5 transition-all duration-200 text-base font-medium"
             >
-              <Play size={16} fill="currentColor" /> See How It Works
+              <Play size={12} fill="currentColor" /> See How It Works
             </button>
           </div>
 
@@ -584,11 +584,11 @@ export default function Index() {
           <p className="text-white/60 text-lg max-w-xl mx-auto mb-10">
             Start free today. Get verified in minutes. Watch your business opportunities multiply.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link to="/register" className="btn-primary text-base px-10 py-4 shadow-brand-lg">
-              Create Free Account <ArrowRight size={18} />
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full px-4">
+            <Link to="/register" className="btn-primary text-base w-full sm:w-[240px] py-4 shadow-brand-lg">
+              Create Free Account <ArrowRight size={34} />
             </Link>
-            <Link to="/contact" className="flex items-center gap-2 px-10 py-4 rounded-xl border border-white/20 text-white/80 hover:text-white hover:border-white/40 hover:bg-white/5 transition-all duration-200 text-base font-medium">
+            <Link to="/contact" className="flex items-center justify-center gap-2 w-full sm:w-[240px] py-4 rounded-xl border border-white/20 text-white/80 hover:text-white hover:border-white/40 hover:bg-white/5 transition-all duration-200 text-base font-medium">
               Talk to Sales
             </Link>
           </div>

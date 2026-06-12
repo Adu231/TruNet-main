@@ -48,7 +48,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5 flex-shrink-0">
-            <TruNetLogo />
+            <TruNetLogo variant={scrolled || !isLandingPage ? "default" : "light"} />
           </Link>
 
           {/* Desktop Nav */}
