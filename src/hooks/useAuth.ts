@@ -24,7 +24,7 @@ export const DEMO_ACCOUNTS: Record<string, User & { password: string }> = {
     name: "Sarah Mitchell",
     email: "business@trunet.demo",
     password: "demo123",
-    avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=80&h=80&fit=crop&crop=face",
+    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face",
     role: "business",
     title: "Founder & CEO",
     company: "Apex Ventures",
@@ -178,7 +178,7 @@ export function useAuth() {
     return new Promise((resolve) => {
       setTimeout(() => {
         const defaultAvatar = role === "business" 
-          ? "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=80&h=80&fit=crop&crop=face"
+          ?"https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face"
           : role === "freelancer"
           ? "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face"
           : role === "recruiter"

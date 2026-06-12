@@ -13,7 +13,7 @@ const MOCK_MATCHES: Record<string, any[]> = {
     { id: "m3", name: "Adeola Williams", title: "Investment Partner", company: "Frontier Capital", score: 91, avatar: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=80&h=80&fit=crop&crop=face", reason: "Active B2B SaaS investor", location: "Lagos, NG", status: "suggested" }
   ],
   business: [
-    { id: "m1", name: "Apex Consulting", title: "Strategy Agency", company: "Apex Consulting LLC", score: 95, avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=80&h=80&fit=crop&crop=face", reason: "Top referral source for SaaS GTM", location: "New York, NY", status: "suggested" },
+    { id: "m1", name: "Apex Consulting", title: "Strategy Agency", company: "Apex Consulting LLC", score: 95, avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face", reason: "Top referral source for SaaS GTM", location: "New York, NY", status: "suggested" },
     { id: "m2", name: "Tanaka Institute", title: "AI Research Lab", company: "Tanaka Institute", score: 98, avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&h=80&fit=crop&crop=face", reason: "AI strategy advisory fit", location: "Tokyo, JP", status: "suggested" }
   ],
   freelancer: [
@@ -29,11 +29,11 @@ const MOCK_MATCHES: Record<string, any[]> = {
     { id: "m2", name: "RemitFast", title: "Founder: Kola Adesanya", company: "Fintech Series A", score: 95, avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=face", reason: "96% traction fit for Series A fund", location: "London, UK", ask: "$3.2M", status: "suggested" }
   ],
   expert: [
-    { id: "m1", name: "Sarah Mitchell", title: "Mentee: Startup Founder", company: "Apex Ventures", score: 94, avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=80&h=80&fit=crop&crop=face", reason: "Mentorship request: B2B GTM strategy", location: "New York, NY", status: "suggested" },
+    { id: "m1", name: "Sarah Mitchell", title: "Mentee: Startup Founder", company: "Apex Ventures", score: 94, avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face", reason: "Mentorship request: B2B GTM strategy", location: "New York, NY", status: "suggested" },
     { id: "m2", name: "Priya Sharma", title: "Mentee: Talent Lead", company: "HireForce Pro", score: 88, avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face", reason: "Mentorship request: Scaling tech teams", location: "Toronto, CA", status: "suggested" }
   ],
   admin: [
-    { id: "v1", name: "Amira Hassan", title: "KYC Verification Profile", company: "Passport Upload", score: 85, avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=80&h=80&fit=crop&crop=face", reason: "Verification review queue", location: "New York, NY", status: "pending" },
+    { id: "v1", name: "Amira Hassan", title: "KYC Verification Profile", company: "Passport Upload", score: 85, avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face", reason: "Verification review queue", location: "New York, NY", status: "pending" },
     { id: "v2", name: "BuildFast LLC", title: "Business Registration", company: "Certificate Upload", score: 92, avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=80&h=80&fit=crop&crop=face", reason: "Verification review queue", location: "Toronto, CA", status: "pending" }
   ]
 };

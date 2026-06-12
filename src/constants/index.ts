@@ -59,7 +59,7 @@ export const TESTIMONIALS: Testimonial[] = [
     name: "Sarah Mitchell",
     title: "Founder & CEO",
     company: "Apex Ventures",
-    avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=80&h=80&fit=crop&crop=face",
+    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face",
     content: "TruNet transformed how we source business partnerships. The verified profiles and AI matchmaking helped us close 3 enterprise deals in the first month. The trust score system is a game-changer.",
     rating: 5,
     trustScore: 94,
