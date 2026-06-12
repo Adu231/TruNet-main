@@ -12,6 +12,13 @@ const SKILLS = ["Product Strategy", "B2B SaaS", "AI/ML", "Team Leadership", "Go-
 
 export default function Profile() {
   const { user, isAuthenticated, updateProfile } = useAuth();
+  const [form, setForm] = useState({
+    name: user?.name || "",
+    title: user?.title || "",
+    company: user?.company || "",
+    location: user?.location || "",
+    bio: user?.bio || "",
+  });
   const [editing, setEditing] = useState(false);
   const [saving, setSaving] = useState(false);
   const [skills, setSkills] = useState(SKILLS);

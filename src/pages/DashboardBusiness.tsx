@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   DollarSign, TrendingUp, Users, Handshake, BarChart3, ArrowRight,
-  Plus, Target, Building2, Star, CheckCircle, Globe, Zap, UploadCloud, ClipboardCheck
+  Plus, Target, Building2, Star, CheckCircle, Globe, Zap, UploadCloud, ClipboardCheck, ShieldCheck
 } from "lucide-react";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import { useAuth } from "@/hooks/useAuth";
@@ -86,6 +86,41 @@ export default function DashboardBusiness() {
   return (
     <DashboardLayout>
       <div className="p-6 lg:p-8 space-y-6">
+        {/* Welcome Banner */}
+        <div className="bg-card border border-border rounded-2xl p-6 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div className="flex items-center gap-4">
+            {user?.avatar ? (
+              <img src={user.avatar} alt={user.name} className="w-16 h-16 rounded-2xl object-cover ring-4 ring-primary/10 flex-shrink-0" />
+            ) : (
+              <div className="w-16 h-16 rounded-2xl bg-primary text-white flex items-center justify-center text-2xl font-bold flex-shrink-0">
+                {user?.name ? user.name.charAt(0).toUpperCase() : "U"}
+              </div>
+            )}
+            <div>
+              <div className="flex items-center gap-2">
+                <h1 className="text-xl font-display font-bold text-foreground">Welcome back, {user?.name || "Business Owner"}</h1>
+                {user?.isVerified && (
+                  <span className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 text-[10px] font-semibold">
+                    <ShieldCheck size={10} className="text-primary" /> Verified
+                  </span>
+                )}
+              </div>
+              <p className="text-sm text-muted-foreground">{user?.title || "Business Owner"} at {user?.company || "Apex Ventures"}</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="text-right">
+              <p className="text-xs text-muted-foreground">Trust Score</p>
+              <p className="text-lg font-bold text-primary">{user?.trustScore || 92}%</p>
+            </div>
+            <div className="h-10 border-l border-border" />
+            <div className="text-right">
+              <p className="text-xs text-muted-foreground">Connections</p>
+              <p className="text-lg font-bold text-foreground">{user?.connections || 1240}</p>
+            </div>
+          </div>
+        </div>
+
         {/* Business Journey Header */}
         <div className="bg-card border border-border rounded-2xl p-5 shadow-sm">
           <h2 className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-4">Business Owner Flow Progress</h2>

@@ -48,7 +48,7 @@ export default function Register() {
     e.preventDefault();
     if (!validateStep2()) return;
     setLoading(true);
-    const ok = await register(form.name, form.email, form.password);
+    const ok = await register(form.name, form.email, form.password, userType, form.company);
     setLoading(false);
     if (ok) {
       toast.success("Welcome to TruNet! Let's get you verified.");

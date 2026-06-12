@@ -174,18 +174,27 @@ export function useAuth() {
     });
   };
 
-  const register = (name: string, email: string, _password: string): Promise<boolean> => {
+  const register = (name: string, email: string, _password: string, role: string = "professional", company: string = ""): Promise<boolean> => {
     return new Promise((resolve) => {
       setTimeout(() => {
+        const defaultAvatar = role === "business" 
+          ? "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=80&h=80&fit=crop&crop=face"
+          : role === "freelancer"
+          ? "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face"
+          : role === "recruiter"
+          ? "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face"
+          : "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face";
+
         const userData: User = {
           id: `usr_${Date.now()}`,
           name,
           email,
-          role: "professional",
-          title: "Professional",
-          company: "",
-          location: "",
-          bio: "",
+          role: role as any,
+          avatar: defaultAvatar,
+          title: role === "business" ? "Founder & CEO" : role.charAt(0).toUpperCase() + role.slice(1),
+          company,
+          location: "New York, NY",
+          bio: `Verified ${role} on TruNet.`,
           trustScore: 45,
           isVerified: false,
           isKYCVerified: false,

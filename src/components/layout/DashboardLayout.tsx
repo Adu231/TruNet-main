@@ -10,6 +10,7 @@ import {
   ClipboardList, Building2, ShieldCheck, Eye, Database, Flag
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
+import { useTheme } from "@/hooks/useTheme";
 import { cn, getInitials } from "@/lib/utils";
 import TruNetLogo from "@/components/features/TruNetLogo";
 import TrustScore from "@/components/features/TrustScore";
@@ -160,6 +161,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const location = useLocation();
   const navigate = useNavigate();
   const { user, logout } = useAuth();
+  const { isDark } = useTheme();
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -181,11 +183,15 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
     <div className="flex flex-col h-full">
       {/* Logo + Collapse Toggle */}
       <div className={cn("p-4 border-b border-sidebar-border flex items-center gap-3", collapsed && "justify-center p-3")}>
-        {!collapsed && <TruNetLogo variant="light" size="sm" />}
+        {!collapsed && (
+          <Link to="/" className="flex items-center gap-2 hover:opacity-90 transition-opacity">
+            <TruNetLogo variant={isDark ? "light" : "dark"} size="sm" />
+          </Link>
+        )}
         {collapsed && (
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center">
+          <Link to="/" className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center hover:opacity-90 transition-opacity">
             <Shield size={16} className="text-white" />
-          </div>
+          </Link>
         )}
         {!collapsed && (
           <button
@@ -303,7 +309,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         <button
           onClick={handleLogout}
           className={cn(
-            "sidebar-item text-red-400/70 hover:text-red-400 hover:bg-red-500/10 w-full",
+            "sidebar-item text-red-500/80 hover:text-red-600 hover:bg-red-500/10 dark:text-red-400/70 dark:hover:text-red-400 dark:hover:bg-red-500/10 w-full",
             collapsed && "justify-center px-2"
           )}
           title={collapsed ? "Sign Out" : undefined}
@@ -333,7 +339,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setMobileOpen(false)} />
           <aside className="absolute left-0 top-0 bottom-0 w-72 bg-sidebar flex flex-col shadow-2xl">
             <div className="flex items-center justify-between p-4 border-b border-sidebar-border">
-              <TruNetLogo variant="light" size="sm" />
+              <Link to="/" className="flex items-center gap-2 hover:opacity-90 transition-opacity">
+                <TruNetLogo variant={isDark ? "light" : "dark"} size="sm" />
+              </Link>
               <button onClick={() => setMobileOpen(false)} className="p-1.5 rounded-lg text-sidebar-foreground/50 hover:text-sidebar-foreground">
                 <X size={18} />
               </button>
@@ -387,7 +395,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                   <span>{label}</span>
                 </Link>
               ))}
-              <button onClick={handleLogout} className="sidebar-item text-red-400/70 hover:text-red-400 hover:bg-red-500/10 w-full">
+              <button onClick={handleLogout} className="sidebar-item text-red-500/80 hover:text-red-600 hover:bg-red-500/10 dark:text-red-400/70 dark:hover:text-red-400 dark:hover:bg-red-500/10 w-full">
                 <LogOut size={18} />
                 <span>Sign Out</span>
               </button>
